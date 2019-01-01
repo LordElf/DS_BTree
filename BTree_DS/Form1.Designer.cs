@@ -32,8 +32,8 @@
             this.MaxDegree = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnInsertFile = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.txtDel = new System.Windows.Forms.TextBox();
             this.txtInsert = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -84,19 +84,19 @@
             this.btnInsertFile.Text = "Insert from file";
             this.btnInsertFile.UseVisualStyleBackColor = true;
             // 
-            // textBox3
+            // txtSearch
             // 
-            this.textBox3.Location = new System.Drawing.Point(279, 143);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 25);
-            this.textBox3.TabIndex = 25;
+            this.txtSearch.Location = new System.Drawing.Point(279, 143);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(100, 25);
+            this.txtSearch.TabIndex = 25;
             // 
-            // textBox2
+            // txtDel
             // 
-            this.textBox2.Location = new System.Drawing.Point(279, 90);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 25);
-            this.textBox2.TabIndex = 24;
+            this.txtDel.Location = new System.Drawing.Point(279, 90);
+            this.txtDel.Name = "txtDel";
+            this.txtDel.Size = new System.Drawing.Size(100, 25);
+            this.txtDel.TabIndex = 24;
             // 
             // txtInsert
             // 
@@ -114,6 +114,7 @@
             this.btnSearch.TabIndex = 22;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnDelete
             // 
@@ -123,6 +124,7 @@
             this.btnDelete.TabIndex = 21;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnInsert
             // 
@@ -152,8 +154,8 @@
             this.Controls.Add(this.MaxDegree);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnInsertFile);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.txtDel);
             this.Controls.Add(this.txtInsert);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnDelete);
@@ -172,8 +174,8 @@
         private System.Windows.Forms.ComboBox MaxDegree;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnInsertFile;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.TextBox txtDel;
         private System.Windows.Forms.TextBox txtInsert;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnDelete;

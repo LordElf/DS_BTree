@@ -2,20 +2,20 @@
 {
     using System.Collections.Generic;
 
-    public class Node<TK, TP>
+    public class Node<keyType, pointerType>
     {
         private int degree;
 
         public Node(int degree)
         {
             this.degree = degree;
-            this.Children = new List<Node<TK, TP>>(degree);
-            this.Entries = new List<Entry<TK, TP>>(degree);
+            this.Children = new List<Node<keyType, pointerType>>(degree);
+            this.Entries = new List<Entry<keyType, pointerType>>(degree);
         }
 
-        public List<Node<TK, TP>> Children { get; set; }
+        public List<Node<keyType, pointerType>> Children { get; set; }
 
-        public List<Entry<TK, TP>> Entries { get; set; }
+        public List<Entry<keyType, pointerType>> Entries { get; set; }
 
         public bool IsLeaf
         {

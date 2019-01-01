@@ -52,5 +52,23 @@ namespace BTree_DS
         {
 
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bTree.Delete(int.Parse(txtDel.Text));
+            }
+            catch(Exception err)
+            {
+                throw err;
+            }
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
