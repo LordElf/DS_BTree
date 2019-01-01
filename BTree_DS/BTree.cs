@@ -66,23 +66,30 @@
         /// </summary>
         /// <param name="newkey">Key to be inserted.</param>
         /// <param name="newpointer">Pointer to be associated with inserted key.</param>
-        public void Insert(keyType newkey, pointerType newpointer)
+        public bool Insert(keyType newkey, pointerType newpointer)
         {
-            // there is space in the root node
-            if (!root.HasReachedMaxentries)
+            int index = 0;
+            Node<keyType, pointerType> buffer = null;
+            if (Search(newkey, ref index, ref buffer) == null)
             {
+                //需要在InsertNonFull中再次查找来确认位置//need to reidentify the position of node in InsertNonFull
+                //buffer的改变不会改变其指向的对象//the change of buffer cannot change the object it refers to
+                if (!root.HasReachedMaxentries)
+                {
+                    InsertNonFull(root, newkey, newpointer);
+                    return true;
+                }
+
+                Node<keyType, pointerType> buffer2 = root;
+                root = new Node<keyType, pointerType>(Degree);
+                root.Children.Add(buffer2);
+                SplitChild(root, 0, buffer2);
                 InsertNonFull(root, newkey, newpointer);
-                return;
+
+                Height++;
+                return true;
             }
-
-            // need to create new node and have it split
-            Node<keyType, pointerType> buffer = root;
-            root = new Node<keyType, pointerType>(Degree);
-            root.Children.Add(buffer);
-            SplitChild(root, 0, buffer);
-            InsertNonFull(root, newkey, newpointer);
-
-            Height++;
+            else return false;
         }
 
         private void InsertNonFull(Node<keyType, pointerType> node, keyType newKey, pointerType newPointer)
@@ -142,9 +149,13 @@
         /// as required to keep the BTree properties.
         /// </summary>
         /// <param name="keyToDelete">key to be deleted.</param>
-        public void Delete(keyType keyToDelete)
+        public bool Delete(keyType keyToDelete)
         {
-            DeleteInternal(root, keyToDelete);
+            int index = 0;
+            Node<keyType,pointerType> buffer = null;
+            if (Search(keyToDelete, ref index, ref buffer) == null)
+                return false;
+            DeleteInternal(buffer, keyToDelete, index);
 
             // if root's last entry was moved to a child node, remove it
             if (root.entries.Count == 0 && !root.IsLeaf)
@@ -152,6 +163,7 @@
                 root = root.Children.Single();
                 Height--;
             }
+            return true;
         }
 
         /// <summary>
@@ -159,8 +171,9 @@
         /// </summary>
         /// <param name="node">Node to use to start search for the key.</param>
         /// <param name="keyToDelete">key to be deleted.</param>
-        private void DeleteInternal(Node<keyType, pointerType> node, keyType keyToDelete)
+        private void DeleteInternal(Node<keyType, pointerType> node, keyType keyToDelete, int index)
         {
+
             int i = node.entries.TakeWhile(entry => keyToDelete.CompareTo(entry.key) > 0).Count();
 
             // found key in node, so delete if from it
@@ -190,7 +203,7 @@
             // node has reached min # of entries, and removing any from it will break the btree property,
             // so block makes sure that the "child" has at least "degree" # of nodes by moving an 
             // entry from a sibling node or merging nodes
-            if (childNode.HasReachedMinentries)
+            if (childNode.HasReachedMinentries && !childNode.HasReachedMaxentries)
             {
                 int leftIndex = subtreeIndexInNode - 1;
                 Node<keyType, pointerType> leftSibling = subtreeIndexInNode > 0 ? parentNode.Children[leftIndex] : null;
@@ -266,7 +279,7 @@
             // at point, we know that "child" has at least "degree" nodes, so we can
             // move on - guarantees that if any node needs to be removed from it to
             // guarantee BTree's property, we will be fine with that
-            DeleteInternal(childNode, keyToDelete);
+            DeleteInternal(childNode, keyToDelete, subtreeIndexInNode);
         }
         
         /// <summary>
@@ -309,7 +322,7 @@
                     node.entries.RemoveAt(keyIndexInNode);
                     node.Children.RemoveAt(keyIndexInNode + 1);
 
-                    DeleteInternal(predecessorChild, keyToDelete);
+                    //DeleteInternal(predecessorChild, keyToDelete);
                 }
             }
         }

@@ -16,7 +16,7 @@ namespace BTree_DS
         public Form1()
         {
             InitializeComponent();
-            txtPrint.ScrollBars = ScrollBars.Vertical;
+            txtInsertPrint.ScrollBars = ScrollBars.Vertical;
         }
         BTree<int, int> bTree;
 
@@ -32,10 +32,22 @@ namespace BTree_DS
             int key = random.Next(0, 999);
             int pointer = random.Next(0, 999);
             //if (txtInsert.Text != null)
-            bTree.Insert(key, pointer);
-
-            txtPrint.Clear();
-            bTree.print(txtPrint);
+            try
+            {
+                if (bTree.Insert(key, pointer))
+                {
+                    txtInsertPrint.Clear();
+                    bTree.print(txtInsertPrint);
+                }
+                else txtInsertPrint.AppendText(key + " Has Been In The Tree");
+            }
+            catch (Exception err)
+            {
+                txtInsertPrint.AppendText(err.ToString());
+            }
+                
+            
+            
         }
 
         private void label1_Click_1(object sender, EventArgs e)
@@ -57,11 +69,18 @@ namespace BTree_DS
         {
             try
             {
-                bTree.Delete(int.Parse(txtDel.Text));
+                txtDelPrint.Clear();
+                if (!bTree.Delete(int.Parse(txtDel.Text)))
+                    txtDelPrint.AppendText(txtDel.Text + " Not Found\n");
+                else 
+                    txtDelPrint.AppendText(txtDel.Text + " has been deleted\n");
+                txtDel.Clear();
+                
+                bTree.print(txtDelPrint);
             }
             catch(Exception err)
             {
-                throw err;
+                txtDelPrint.AppendText( err.ToString());
             }
 
         }
