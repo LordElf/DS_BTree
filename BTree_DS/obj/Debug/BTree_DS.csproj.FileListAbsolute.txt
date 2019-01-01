@@ -1,0 +1,10 @@
+C:\Users\shawn\source\repos\BTree_DS\BTree_DS\bin\Debug\BTree_DS.exe.config
+C:\Users\shawn\source\repos\BTree_DS\BTree_DS\bin\Debug\BTree_DS.exe
+C:\Users\shawn\source\repos\BTree_DS\BTree_DS\bin\Debug\BTree_DS.pdb
+C:\Users\shawn\source\repos\BTree_DS\BTree_DS\obj\Debug\BTree_DS.csprojAssemblyReference.cache
+C:\Users\shawn\source\repos\BTree_DS\BTree_DS\obj\Debug\BTree_DS.Form1.resources
+C:\Users\shawn\source\repos\BTree_DS\BTree_DS\obj\Debug\BTree_DS.Properties.Resources.resources
+C:\Users\shawn\source\repos\BTree_DS\BTree_DS\obj\Debug\BTree_DS.csproj.GenerateResource.cache
+C:\Users\shawn\source\repos\BTree_DS\BTree_DS\obj\Debug\BTree_DS.csproj.CoreCompileInputs.cache
+C:\Users\shawn\source\repos\BTree_DS\BTree_DS\obj\Debug\BTree_DS.exe
+C:\Users\shawn\source\repos\BTree_DS\BTree_DS\obj\Debug\BTree_DS.pdb
