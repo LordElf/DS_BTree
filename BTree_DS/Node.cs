@@ -10,12 +10,12 @@
         {
             this.degree = degree;
             this.Children = new List<Node<keyType, pointerType>>(degree);
-            this.Entries = new List<Entry<keyType, pointerType>>(degree);
+            this.entries = new List<Entry<keyType, pointerType>>(degree);
         }
 
         public List<Node<keyType, pointerType>> Children { get; set; }
 
-        public List<Entry<keyType, pointerType>> Entries { get; set; }
+        public List<Entry<keyType, pointerType>> entries { get; set; }
 
         public bool IsLeaf
         {
@@ -25,19 +25,19 @@
             }
         }
 
-        public bool HasReachedMaxEntries
+        public bool HasReachedMaxentries
         {
             get
             {
-                return this.Entries.Count == 2*degree - 1;
+                return this.entries.Count == 2*degree - 1;
             }
         }
 
-        public bool HasReachedMinEntries
+        public bool HasReachedMinentries
         {
             get
             {
-                return Entries.Count >= degree;
+                return entries.Count >= degree;
             }
         }
     }
